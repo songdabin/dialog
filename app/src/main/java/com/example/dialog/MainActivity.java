@@ -99,15 +99,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dlg.setMultiChoiceItems(menu, checked, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                String msg ="";
                 checked[which] = isChecked;
-                String msg = null;
                 for (int i=0; i<3; i++) {
                     if (checked[i] == true) {
-                        msg+=menu[i];
+                        msg += menu[i];
+                        if (i != 2) msg+=" ,";
                     }
-                    msg+=" ,";
+
                 }
-                displayToast(msg+"가 선택되었습니다");
+                if (msg != null) displayToast(msg+"가 선택되었습니다");
             }
         });
         dlg.setIcon(R.mipmap.ic_launcher);
