@@ -35,4 +35,12 @@
         android:layout_weight="1"
         android:text="사용자 정의 대화상자" />
 
+    <Button
+        android:onClick="showDatePicker"
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Date" />
+
 </LinearLayout>

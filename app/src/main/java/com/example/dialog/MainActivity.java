@@ -2,16 +2,18 @@ package com.example.dialog;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button b1, b2, b3, b4;
+    Button b1, b2, b3, b4, b5;
     int selectedMenu = 0;
     String menu[] ={"chicken", "pizza", "spaghetti"};
     boolean checked[] = {true, true, false};
@@ -29,10 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b2 = findViewById(R.id.button2);
         b3 = findViewById(R.id.button3);
         b4 = findViewById(R.id.button4);
+        b5 = findViewById(R.id.button5);
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
         b3.setOnClickListener(this);
         b4.setOnClickListener(this);
+        b5.setOnClickListener(this);
     }
 
     @Override
@@ -48,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (v.getId() == R.id.button4) {
             displayDialog4();
+        }
+        else if (v.getId() == R.id.button5) {
+            showDatePicker();
         }
     }
 
@@ -144,4 +151,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    public void showDatePicker() {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(),"datePicker");
+    }
+
+    public void processDatePickerResult(int year, int month, int day) {
+        String month_string = Integer.toString(month+1);
+        String day_string = Integer.toString(day);
+        String year_string = Integer.toString(year);
+        String dateMessage = (month_string + "/" + day_string + "/" + year_string);
+        Toast.makeText(this, "Date: " + dateMessage, Toast.LENGTH_SHORT).show();
+    }
 }
